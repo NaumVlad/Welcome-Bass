@@ -247,6 +247,11 @@ h1 {
   font-weight: 600;
 }
 
+.date-line .hebrew-date-number {
+  font-family: Georgia, serif;
+  font-variant-numeric: lining-nums;
+}
+
 .venue:hover,
 .venue:focus-visible,
 .contact-phone:hover,
