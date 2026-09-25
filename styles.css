@@ -297,6 +297,10 @@ h1 {
   line-height: 1.08;
 }
 
+.rsvp-date {
+  color: var(--gold);
+}
+
 .form-divider {
   align-self: center;
   width: min(82%, 310px);
