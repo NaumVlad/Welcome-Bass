@@ -288,7 +288,7 @@ h1 em {
 
 .rsvp {
   color: #a11b36;
-  font-size: clamp(1.5rem, 3vw, 1.86rem);
+  font-size: clamp(1.68rem, 3.3vw, 2.02rem);
   font-weight: 700;
   line-height: 1.08;
 }
@@ -581,7 +581,7 @@ h1 em {
 
   .rsvp {
     max-width: 86%;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     text-shadow: 0 0 8px var(--ivory), 0 0 8px var(--ivory);
   }
 
