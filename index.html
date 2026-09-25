@@ -17,11 +17,21 @@
       rel="stylesheet"
     />
     <link rel="preload" href="assets/botanical-frame.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=12" />
+    <link rel="stylesheet" href="styles.css?v=13" />
   </head>
   <body class="is-loading">
     <div class="site-preloader" id="site-preloader" aria-label="Завантаження запрошення">
-      <video class="preloader-video" id="preloader-video" autoplay muted playsinline preload="auto">
+      <video
+        class="preloader-video"
+        id="preloader-video"
+        autoplay
+        muted
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        disablepictureinpicture
+        aria-hidden="true"
+      >
         <source src="assets/preloader.mp4" type="video/mp4" />
       </video>
     </div>
@@ -187,7 +197,26 @@
         window.setTimeout(() => preloader.remove(), 550);
       }
 
-      window.setTimeout(revealInvitation, 3000);
+      function startPreloaderVideo() {
+        if (!preloaderVideo) {
+          revealInvitation();
+          return;
+        }
+
+        // Safari on iPhone permits an automatic start only for inline muted video.
+        preloaderVideo.muted = true;
+        preloaderVideo.defaultMuted = true;
+        preloaderVideo.playsInline = true;
+
+        preloaderVideo.play().catch(() => {
+          // The video element will make another attempt as soon as it has enough data.
+          preloaderVideo.addEventListener("canplay", startPreloaderVideo, { once: true });
+        });
+      }
+
+      preloaderVideo?.addEventListener("ended", revealInvitation, { once: true });
+      preloaderVideo?.addEventListener("error", revealInvitation, { once: true });
+      startPreloaderVideo();
 
       function updateSpouseField() {
         const selectedAttendance = guestForm.querySelector("input[name='attendance']:checked");
