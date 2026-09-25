@@ -16,9 +16,16 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=11" />
+    <link rel="preload" href="assets/botanical-frame.png" as="image" />
+    <link rel="stylesheet" href="styles.css?v=12" />
   </head>
-  <body>
+  <body class="is-loading">
+    <div class="site-preloader" id="site-preloader" aria-label="Завантаження запрошення">
+      <video class="preloader-video" id="preloader-video" autoplay muted playsinline preload="auto">
+        <source src="assets/preloader.mp4" type="video/mp4" />
+      </video>
+    </div>
+
     <main class="page-shell">
       <article class="invitation" aria-labelledby="couple-names">
         <img
@@ -168,6 +175,19 @@
       const spouseField = document.querySelector("#spouse-field");
       const spouseName = guestForm.elements.spouseName;
       const formStatus = document.querySelector("#form-status");
+      const preloader = document.querySelector("#site-preloader");
+      const preloaderVideo = document.querySelector("#preloader-video");
+
+      function revealInvitation() {
+        if (!preloader || preloader.classList.contains("is-hidden")) return;
+
+        preloader.classList.add("is-hidden");
+        document.body.classList.remove("is-loading");
+        preloaderVideo?.pause();
+        window.setTimeout(() => preloader.remove(), 550);
+      }
+
+      window.setTimeout(revealInvitation, 3000);
 
       function updateSpouseField() {
         const selectedAttendance = guestForm.querySelector("input[name='attendance']:checked");
