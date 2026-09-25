@@ -244,6 +244,8 @@ h1 {
 .date-line time,
 .date-line span b {
   color: var(--gold);
+  font-family: Georgia, serif;
+  font-variant-numeric: lining-nums;
   font-weight: 600;
 }
 
