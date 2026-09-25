@@ -218,17 +218,17 @@ h1 em {
   font-weight: 500;
   letter-spacing: 0.11em;
   line-height: 1.4;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.23em;
   text-transform: uppercase;
 }
 
 .venue:hover,
 .venue:focus-visible,
-.contact:hover,
-.contact:focus-visible {
+.contact-phone:hover,
+.contact-phone:focus-visible {
   color: #b01637;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
 }
 
 .schedule {
@@ -260,17 +260,104 @@ h1 em {
   line-height: 1.02;
 }
 
-.rsvp,
+.rsvp {
+  font-size: clamp(1.26rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.guest-form-section {
+  width: min(100%, 430px);
+  margin-top: 18px;
+}
+
+.guest-form-section h2 {
+  margin: 0 0 14px;
+  color: var(--wine);
+  font-size: clamp(1.7rem, 3.4vw, 2.05rem);
+  line-height: 1.05;
+}
+
+.guest-form {
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+.form-field {
+  display: grid;
+  gap: 5px;
+  color: var(--wine);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.08rem, 2vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.form-field input,
+.form-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 43px;
+  padding: 8px 10px;
+  border: 1px solid rgba(185, 137, 42, 0.8);
+  border-radius: 2px;
+  background: rgba(255, 253, 246, 0.88);
+  color: var(--wine);
+  font: 600 1rem "Montserrat", Arial, sans-serif;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: 2px solid rgba(185, 137, 42, 0.55);
+  outline-offset: 2px;
+}
+
+.form-submit {
+  min-height: 46px;
+  margin-top: 4px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: var(--gold);
+  color: #fffdf6;
+  cursor: pointer;
+  font: 700 0.73rem "Montserrat", Arial, sans-serif;
+  letter-spacing: 0.11em;
+}
+
+.form-submit:hover,
+.form-submit:focus-visible {
+  background: #a97920;
+}
+
+.form-submit:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.form-status {
+  margin: 0;
+  color: var(--wine);
+  font-size: 1.08rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .contact {
+  display: grid;
+  gap: 1px;
+  margin: 18px 0 0;
+  color: var(--wine);
   font-size: clamp(1.05rem, 2.5vw, 1.4rem);
   font-weight: 500;
   line-height: 1.08;
 }
 
-.contact {
-  margin-top: 10px;
+.contact-phone {
   color: var(--wine);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 @media (max-width: 620px) {
@@ -361,18 +448,42 @@ h1 em {
   }
 
   .rsvp {
-    max-width: 58%;
-    font-size: 0.96rem;
+    max-width: 86%;
+    font-size: 1.22rem;
     text-shadow: 0 0 8px var(--ivory), 0 0 8px var(--ivory);
   }
 
   .contact {
-    max-width: 64%;
-    margin-top: 6px;
-    padding: 3px 8px;
-    border-radius: 999px;
-    background: rgba(248, 243, 231, 0.78);
-    font-size: 0.9rem;
+    margin-top: 18px;
+    font-size: 1.05rem;
+  }
+
+  .guest-form-section {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .guest-form-section h2 {
+    margin-bottom: 12px;
+    font-size: 1.75rem;
+  }
+
+  .guest-form {
+    gap: 10px;
+  }
+
+  .form-field {
+    font-size: 1.14rem;
+  }
+
+  .form-field input,
+  .form-field select {
+    min-height: 42px;
+    font-size: 0.88rem;
+  }
+
+  .form-submit {
+    min-height: 44px;
   }
 }
 

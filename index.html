@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=7" />
+    <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
     <main class="page-shell">
@@ -104,11 +104,98 @@
             Будь ласка, повідомте<br />
             про свою присутність до 15.10
           </p>
-          <a class="contact" href="tel:+380631177176">
-            Контактна особа: +380 (63) 117 71 76
-          </a>
+
+          <section class="guest-form-section" aria-labelledby="guest-form-title">
+            <h2 id="guest-form-title">Анкета гостя</h2>
+            <!-- Add a published Google Apps Script URL to data-endpoint to save answers to Google Sheets. -->
+            <form class="guest-form" id="guest-form" data-endpoint="">
+              <label class="form-field">
+                <span>Ваше ім'я та прізвище</span>
+                <input name="guestName" type="text" autocomplete="name" required />
+              </label>
+
+              <label class="form-field">
+                <span>Ви будете з нами?</span>
+                <select name="attendance" required>
+                  <option value="" selected disabled>Оберіть відповідь</option>
+                  <option value="Так, із радістю">Так, із радістю</option>
+                  <option value="Буду з дружиною / чоловіком">Буду з дружиною / чоловіком</option>
+                </select>
+              </label>
+
+              <label class="form-field spouse-field" id="spouse-field" hidden>
+                <span>Ім'я дружини / чоловіка</span>
+                <input name="spouseName" type="text" autocomplete="off" />
+              </label>
+
+              <button class="form-submit" type="submit">НАДІСЛАТИ ВІДПОВІДЬ</button>
+              <p class="form-status" id="form-status" role="status" aria-live="polite" hidden>
+                Ваша відповідь надіслана
+              </p>
+            </form>
+          </section>
+
+          <p class="contact">
+            <span>Контактна особа:</span>
+            <a class="contact-phone" href="tel:+380631177176">+380 (63) 117 71 76</a>
+          </p>
         </div>
       </article>
     </main>
+
+    <script>
+      const guestForm = document.querySelector("#guest-form");
+      const attendance = guestForm.elements.attendance;
+      const spouseField = document.querySelector("#spouse-field");
+      const spouseName = guestForm.elements.spouseName;
+      const formStatus = document.querySelector("#form-status");
+
+      function updateSpouseField() {
+        const spouseIsComing = attendance.value === "Буду з дружиною / чоловіком";
+        spouseField.hidden = !spouseIsComing;
+        spouseName.required = spouseIsComing;
+
+        if (!spouseIsComing) {
+          spouseName.value = "";
+        }
+      }
+
+      attendance.addEventListener("change", updateSpouseField);
+
+      guestForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        updateSpouseField();
+
+        if (!guestForm.checkValidity()) {
+          guestForm.reportValidity();
+          return;
+        }
+
+        const endpoint = guestForm.dataset.endpoint;
+        const submitButton = guestForm.querySelector("button[type='submit']");
+
+        if (endpoint) {
+          submitButton.disabled = true;
+
+          try {
+            await fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(Object.fromEntries(new FormData(guestForm))),
+            });
+          } catch (error) {
+            submitButton.disabled = false;
+            return;
+          }
+
+          submitButton.disabled = false;
+        }
+
+        formStatus.hidden = false;
+        guestForm.reset();
+        updateSpouseField();
+      });
+    </script>
   </body>
 </html>
