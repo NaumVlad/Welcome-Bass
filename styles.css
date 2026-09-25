@@ -166,6 +166,10 @@ h1 {
   margin-block: 8px;
 }
 
+.ornament.spaced {
+  margin-block: clamp(14px, 2.5vw, 20px);
+}
+
 h1 {
   display: flex;
   margin-block: clamp(12px, 2vw, 18px);
