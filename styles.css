@@ -198,12 +198,6 @@ h1 {
 
 .names-ampersand {
   color: #c39742;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 0.86em;
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1;
-  transform: translateY(0.03em);
 }
 
 .with-help {
