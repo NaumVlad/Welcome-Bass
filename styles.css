@@ -291,7 +291,10 @@ h1 em {
   }
 
   .invitation::after {
-    inset: 8px;
+    inset: 14px;
+    border-color: rgba(178, 127, 39, 0.9);
+    outline: 1px solid rgba(178, 127, 39, 0.78);
+    outline-offset: -5px;
   }
 
   .botanical-frame {
