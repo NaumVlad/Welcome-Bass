@@ -196,10 +196,12 @@ h1 {
   white-space: nowrap;
 }
 
-h1 em {
-  color: var(--gold);
-  font-size: 0.82em;
-  font-weight: 400;
+.names-ampersand {
+  flex: 0 0 auto;
+  width: auto;
+  height: 0.82em;
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .with-help {
@@ -235,6 +237,12 @@ h1 em {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.23em;
   text-transform: uppercase;
+}
+
+.date-line time,
+.date-line span b {
+  color: var(--gold);
+  font-weight: 600;
 }
 
 .venue:hover,
