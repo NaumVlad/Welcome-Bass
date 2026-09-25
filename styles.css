@@ -290,6 +290,10 @@ h1 {
   line-height: 1.02;
 }
 
+.family-signoff {
+  white-space: nowrap;
+}
+
 .rsvp {
   color: #a11b36;
   font-size: clamp(1.68rem, 3.3vw, 2.02rem);
@@ -584,7 +588,7 @@ h1 {
   }
 
   .families {
-    max-width: 70%;
+    max-width: 100%;
   }
 
   .rsvp {
