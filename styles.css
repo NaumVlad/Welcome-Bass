@@ -168,6 +168,7 @@ h1 {
 
 h1 {
   display: flex;
+  margin-block: clamp(12px, 2vw, 18px);
   align-items: baseline;
   justify-content: center;
   gap: clamp(0.18em, 1.6vw, 0.32em);
