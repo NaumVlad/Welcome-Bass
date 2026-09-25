@@ -480,7 +480,7 @@ h1 em {
   gap: 1px;
   margin: 44px 0 0;
   color: var(--wine);
-  font-size: clamp(1.18rem, 2.7vw, 1.55rem);
+  font-size: clamp(1.32rem, 3vw, 1.68rem);
   font-weight: 500;
   line-height: 1.08;
 }
@@ -591,7 +591,7 @@ h1 em {
 
   .contact {
     margin-top: 44px;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
   }
 
   .guest-form-section {
