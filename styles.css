@@ -1,0 +1,369 @@
+:root {
+  color-scheme: light;
+  --ivory: #f8f3e7;
+  --ivory-deep: #efe4ce;
+  --wine: #8d0d27;
+  --wine-dark: #650716;
+  --gold: #c39742;
+  --gold-soft: #d5b36d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #2a0710;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--wine);
+  background:
+    radial-gradient(circle at 50% 12%, rgba(167, 27, 56, 0.34), transparent 32rem),
+    linear-gradient(150deg, #1b0308 0%, #450b17 52%, #190307 100%);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.page-shell {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: clamp(0px, 4vw, 64px);
+}
+
+.invitation {
+  isolation: isolate;
+  position: relative;
+  width: min(100%, 820px);
+  min-height: 1230px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, #fffdf8 0%, transparent 48%),
+    linear-gradient(145deg, #fffdf7 0%, var(--ivory) 48%, #f5ead5 100%);
+  box-shadow:
+    0 40px 100px rgba(12, 0, 2, 0.52),
+    0 0 0 1px rgba(225, 194, 127, 0.55);
+}
+
+.invitation::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 18px;
+  border: 1px solid rgba(178, 127, 39, 0.52);
+  pointer-events: none;
+}
+
+.botanical-frame {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.content {
+  display: flex;
+  width: min(74%, 570px);
+  min-height: 1230px;
+  margin-inline: auto;
+  padding: 38px 0 42px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-wrap: balance;
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+.hebrew-mark {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.monogram {
+  display: flex;
+  height: 108px;
+  margin-bottom: 6px;
+  align-items: center;
+  color: var(--wine);
+  font-size: clamp(4.8rem, 10vw, 7rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.13em;
+}
+
+.monogram .ampersand {
+  z-index: -1;
+  margin: 0 -0.02em 0 -0.09em;
+  color: var(--gold);
+  font-size: 0.82em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.blessing,
+.intro,
+.with-help,
+.families {
+  font-size: clamp(1.35rem, 3.35vw, 2rem);
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+.blessing {
+  margin-bottom: 28px;
+}
+
+.intro {
+  margin-bottom: 12px;
+}
+
+.ornament {
+  display: flex;
+  width: min(100%, 380px);
+  margin: 8px 0 6px;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold);
+}
+
+.ornament::before,
+.ornament::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.ornament::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.ornament span {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.ornament.compact {
+  width: min(72%, 270px);
+  margin-block: 8px;
+}
+
+h1 {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(0.18em, 1.6vw, 0.32em);
+  color: var(--wine);
+  font-size: clamp(3.65rem, 9.4vw, 6.6rem);
+  font-weight: 600;
+  line-height: 0.88;
+  white-space: nowrap;
+}
+
+h1 em {
+  color: var(--gold);
+  font-size: 0.82em;
+  font-weight: 400;
+}
+
+.with-help {
+  margin-bottom: 8px;
+}
+
+.date-line {
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  font-size: clamp(1.45rem, 3.5vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.date-line i {
+  display: block;
+  width: 1px;
+  height: 1.1em;
+  background: var(--gold);
+}
+
+.venue {
+  color: var(--wine-dark);
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: clamp(0.92rem, 2vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  line-height: 1.4;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.venue:hover,
+.venue:focus-visible,
+.contact:hover,
+.contact:focus-visible {
+  color: #b01637;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.schedule {
+  display: grid;
+  gap: 10px;
+}
+
+.schedule-block time {
+  display: block;
+  color: var(--gold);
+  font-size: clamp(2.15rem, 5vw, 3.15rem);
+  font-weight: 500;
+  line-height: 0.92;
+}
+
+.schedule-block p {
+  font-size: clamp(1.15rem, 2.8vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.schedule-block b {
+  margin-inline: 0.22em;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.families {
+  line-height: 1.02;
+}
+
+.rsvp,
+.contact {
+  font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+.contact {
+  margin-top: 10px;
+  color: var(--wine);
+  text-decoration: none;
+}
+
+@media (max-width: 620px) {
+  .invitation,
+  .content {
+    min-height: 1120px;
+  }
+
+  .invitation::after {
+    inset: 10px;
+  }
+
+  .content {
+    width: 78%;
+    padding: 32px 0 34px;
+  }
+
+  .monogram {
+    height: 78px;
+    margin-bottom: 2px;
+  }
+
+  h1 {
+    gap: 0.14em;
+    font-size: clamp(2.72rem, 12.4vw, 4.4rem);
+    letter-spacing: -0.025em;
+  }
+
+  .blessing {
+    margin-bottom: 20px;
+  }
+
+  .date-line {
+    flex-wrap: wrap;
+    gap: 2px 10px;
+  }
+
+  .date-line i {
+    display: none;
+  }
+
+  .date-line span {
+    width: 100%;
+  }
+
+  .families {
+    max-width: 70%;
+  }
+
+  .rsvp {
+    max-width: 58%;
+    font-size: 0.96rem;
+    text-shadow: 0 0 8px var(--ivory), 0 0 8px var(--ivory);
+  }
+
+  .contact {
+    max-width: 64%;
+    margin-top: 6px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(248, 243, 231, 0.78);
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .invitation,
+  .content {
+    min-height: 1060px;
+  }
+
+  .content {
+    width: 80%;
+    padding-block: 26px;
+  }
+
+  .hebrew-mark {
+    margin-bottom: 4px;
+  }
+
+  .blessing {
+    margin-bottom: 15px;
+  }
+
+  .ornament {
+    margin-block: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content > * {
+    animation: reveal 700ms ease-out both;
+  }
+
+  .content > :nth-child(n + 5) {
+    animation-delay: 100ms;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
