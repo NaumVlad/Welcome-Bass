@@ -77,7 +77,7 @@ body {
   width: min(74%, 570px);
   min-height: 1230px;
   margin-inline: auto;
-  padding: 38px 0 clamp(280px, 36vw, 360px);
+  padding: 38px 0 clamp(150px, 18vw, 210px);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -261,7 +261,7 @@ h1 em {
 }
 
 .rsvp {
-  font-size: clamp(1.26rem, 2.5vw, 1.6rem);
+  font-size: clamp(1.38rem, 2.8vw, 1.72rem);
   font-weight: 700;
   line-height: 1.08;
 }
@@ -395,6 +395,10 @@ h1 em {
   background: rgba(255, 253, 246, 0.52);
 }
 
+.spouse-field[hidden] {
+  display: none;
+}
+
 .spouse-field input {
   padding: 10px 12px;
   border: 1px solid rgba(141, 13, 39, 0.25);
@@ -403,14 +407,16 @@ h1 em {
 }
 
 .form-submit {
-  min-height: 46px;
+  min-height: 42px;
   margin-top: 4px;
-  border: 1px solid var(--gold);
-  border-radius: 2px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
   background: var(--gold);
   color: #fffdf6;
   cursor: pointer;
   font: 700 0.73rem "Montserrat", Arial, sans-serif;
+  justify-self: center;
   letter-spacing: 0.11em;
 }
 
@@ -435,7 +441,7 @@ h1 em {
 .contact {
   display: grid;
   gap: 1px;
-  margin: 18px 0 0;
+  margin: 30px 0 0;
   color: var(--wine);
   font-size: clamp(1.05rem, 2.5vw, 1.4rem);
   font-weight: 500;
@@ -501,7 +507,7 @@ h1 em {
 
   .content {
     width: 78%;
-    padding: 32px 0 310px;
+    padding: 32px 0 155px;
   }
 
   .monogram {
@@ -538,12 +544,12 @@ h1 em {
 
   .rsvp {
     max-width: 86%;
-    font-size: 1.22rem;
+    font-size: 1.32rem;
     text-shadow: 0 0 8px var(--ivory), 0 0 8px var(--ivory);
   }
 
   .contact {
-    margin-top: 18px;
+    margin-top: 30px;
     font-size: 1.05rem;
   }
 
@@ -582,7 +588,8 @@ h1 em {
   }
 
   .form-submit {
-    min-height: 44px;
+    min-height: 42px;
+    padding-inline: 22px;
   }
 }
 
