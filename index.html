@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="styles.css?v=9" />
   </head>
   <body>
     <main class="page-shell">
@@ -110,22 +110,36 @@
             <!-- Add a published Google Apps Script URL to data-endpoint to save answers to Google Sheets. -->
             <form class="guest-form" id="guest-form" data-endpoint="">
               <label class="form-field">
-                <span>Ваше ім'я та прізвище</span>
-                <input name="guestName" type="text" autocomplete="name" required />
+                <span>Ваше ім'я та прізвище <b aria-hidden="true">*</b></span>
+                <input
+                  name="guestName"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Ім'я та прізвище"
+                  required
+                />
               </label>
 
-              <label class="form-field">
-                <span>Ви будете з нами?</span>
-                <select name="attendance" required>
-                  <option value="" selected disabled>Оберіть відповідь</option>
-                  <option value="Так, із радістю">Так, із радістю</option>
-                  <option value="Буду з дружиною / чоловіком">Буду з дружиною / чоловіком</option>
-                </select>
-              </label>
+              <fieldset class="attendance-fieldset">
+                <legend>Ви будете з нами? <b aria-hidden="true">*</b></legend>
+                <label class="attendance-option">
+                  <input name="attendance" type="radio" value="Так, із радістю" required />
+                  <span>Так, із радістю</span>
+                </label>
+                <label class="attendance-option">
+                  <input name="attendance" type="radio" value="Буду з дружиною / чоловіком" />
+                  <span>Буду з дружиною / чоловіком</span>
+                </label>
+              </fieldset>
 
               <label class="form-field spouse-field" id="spouse-field" hidden>
                 <span>Ім'я дружини / чоловіка</span>
-                <input name="spouseName" type="text" autocomplete="off" />
+                <input
+                  name="spouseName"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="Ім'я та прізвище"
+                />
               </label>
 
               <button class="form-submit" type="submit">НАДІСЛАТИ ВІДПОВІДЬ</button>
@@ -145,13 +159,14 @@
 
     <script>
       const guestForm = document.querySelector("#guest-form");
-      const attendance = guestForm.elements.attendance;
+      const attendanceOptions = [...guestForm.querySelectorAll("input[name='attendance']")];
       const spouseField = document.querySelector("#spouse-field");
       const spouseName = guestForm.elements.spouseName;
       const formStatus = document.querySelector("#form-status");
 
       function updateSpouseField() {
-        const spouseIsComing = attendance.value === "Буду з дружиною / чоловіком";
+        const selectedAttendance = guestForm.querySelector("input[name='attendance']:checked");
+        const spouseIsComing = selectedAttendance?.value === "Буду з дружиною / чоловіком";
         spouseField.hidden = !spouseIsComing;
         spouseName.required = spouseIsComing;
 
@@ -160,7 +175,9 @@
         }
       }
 
-      attendance.addEventListener("change", updateSpouseField);
+      attendanceOptions.forEach((option) => {
+        option.addEventListener("change", updateSpouseField);
+      });
 
       guestForm.addEventListener("submit", async (event) => {
         event.preventDefault();
