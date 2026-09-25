@@ -197,11 +197,13 @@ h1 {
 }
 
 .names-ampersand {
-  flex: 0 0 auto;
-  width: auto;
-  height: 0.82em;
-  object-fit: contain;
-  mix-blend-mode: multiply;
+  color: var(--gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.86em;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+  transform: translateY(0.03em);
 }
 
 .with-help {
@@ -575,7 +577,8 @@ h1 {
   }
 
   .rsvp {
-    max-width: 86%;
+    width: 122%;
+    max-width: none;
     font-size: 1.6rem;
     text-shadow: 0 0 8px var(--ivory), 0 0 8px var(--ivory);
   }
