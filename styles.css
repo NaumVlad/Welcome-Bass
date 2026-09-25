@@ -295,10 +295,10 @@ h1 em {
     border: 0;
     outline: 0;
     background:
-      linear-gradient(90deg, #9e650e, #d39315 52%, #aa7214) left 3.22% top / 2px 100% no-repeat,
-      linear-gradient(90deg, #c38e2c, #ad6e07 52%, #d0951d) left 4.1% top / 2px 100% no-repeat,
-      linear-gradient(270deg, #9e650e, #d39315 52%, #aa7214) right 3.22% top / 2px 100% no-repeat,
-      linear-gradient(270deg, #c38e2c, #ad6e07 52%, #d0951d) right 4.1% top / 2px 100% no-repeat;
+      linear-gradient(90deg, #9e650e, #d39315 52%, #aa7214) left 3.22% top 17px / 2px calc(100% - 34px) no-repeat,
+      linear-gradient(90deg, #c38e2c, #ad6e07 52%, #d0951d) left 4.1% top 22px / 2px calc(100% - 44px) no-repeat,
+      linear-gradient(270deg, #9e650e, #d39315 52%, #aa7214) right 3.22% top 17px / 2px calc(100% - 34px) no-repeat,
+      linear-gradient(270deg, #c38e2c, #ad6e07 52%, #d0951d) right 4.1% top 22px / 2px calc(100% - 44px) no-repeat;
   }
 
   .botanical-frame {
