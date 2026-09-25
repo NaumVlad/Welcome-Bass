@@ -17,30 +17,17 @@
       rel="stylesheet"
     />
     <link rel="preload" href="assets/botanical-frame.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=14" />
+    <link rel="stylesheet" href="styles.css?v=15" />
   </head>
   <body class="is-loading">
     <div class="site-preloader" id="site-preloader" aria-label="Завантаження запрошення">
       <img
         class="preloader-motion-image"
         id="preloader-motion-image"
-        src="assets/preloader.mp4"
+        src="assets/preloader-animation.png"
         alt=""
         aria-hidden="true"
       />
-      <video
-        class="preloader-video"
-        id="preloader-video"
-        autoplay
-        muted
-        playsinline
-        webkit-playsinline
-        preload="auto"
-        disablepictureinpicture
-        aria-hidden="true"
-      >
-        <source src="assets/preloader.mp4" type="video/mp4" />
-      </video>
     </div>
 
     <main class="page-shell">
@@ -193,50 +180,38 @@
       const spouseName = guestForm.elements.spouseName;
       const formStatus = document.querySelector("#form-status");
       const preloader = document.querySelector("#site-preloader");
-      const preloaderVideo = document.querySelector("#preloader-video");
       const preloaderMotionImage = document.querySelector("#preloader-motion-image");
-      const usesIosMotionImage = CSS.supports("-webkit-touch-callout", "none");
 
       function revealInvitation() {
         if (!preloader || preloader.classList.contains("is-hidden")) return;
 
         preloader.classList.add("is-hidden");
         document.body.classList.remove("is-loading");
-        preloaderVideo?.pause();
         window.setTimeout(() => preloader.remove(), 550);
       }
 
-      function startPreloaderVideo() {
-        if (!preloaderVideo) {
+      function startPreloaderAnimation() {
+        if (!preloaderMotionImage) {
           revealInvitation();
           return;
         }
 
-        // Safari on iPhone permits an automatic start only for inline muted video.
-        preloaderVideo.muted = true;
-        preloaderVideo.defaultMuted = true;
-        preloaderVideo.playsInline = true;
+        let hasStarted = false;
+        const revealAfterFullAnimation = () => {
+          if (hasStarted) return;
+          hasStarted = true;
+          window.setTimeout(revealInvitation, 3000);
+        };
 
-        preloaderVideo.play().catch(() => {
-          // The video element will make another attempt as soon as it has enough data.
-          preloaderVideo.addEventListener("canplay", startPreloaderVideo, { once: true });
-        });
-      }
-
-      preloaderVideo?.addEventListener("ended", revealInvitation, { once: true });
-      preloaderVideo?.addEventListener("error", revealInvitation, { once: true });
-
-      if (usesIosMotionImage && preloaderMotionImage) {
-        const revealAfterFullAnimation = () => window.setTimeout(revealInvitation, 3000);
         preloaderMotionImage.addEventListener("load", revealAfterFullAnimation, { once: true });
-        preloaderMotionImage.addEventListener("error", startPreloaderVideo, { once: true });
+        preloaderMotionImage.addEventListener("error", revealInvitation, { once: true });
 
-        if (preloaderMotionImage.complete) {
+        if (preloaderMotionImage.complete && preloaderMotionImage.naturalWidth > 0) {
           revealAfterFullAnimation();
         }
-      } else {
-        startPreloaderVideo();
       }
+
+      startPreloaderAnimation();
 
       function updateSpouseField() {
         const selectedAttendance = guestForm.querySelector("input[name='attendance']:checked");
