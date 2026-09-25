@@ -243,14 +243,21 @@
 
         if (endpoint) {
           submitButton.disabled = true;
+          const submissionPayload = JSON.stringify(Object.fromEntries(new FormData(guestForm)));
+          const beaconPayload = new Blob([submissionPayload], {
+            type: "text/plain;charset=UTF-8",
+          });
+          const wasQueued = navigator.sendBeacon?.(endpoint, beaconPayload);
 
           try {
-            await fetch(endpoint, {
-              method: "POST",
-              mode: "no-cors",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(Object.fromEntries(new FormData(guestForm))),
-            });
+            if (!wasQueued) {
+              await fetch(endpoint, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "text/plain;charset=UTF-8" },
+                body: submissionPayload,
+              });
+            }
           } catch (error) {
             submitButton.disabled = false;
             return;
