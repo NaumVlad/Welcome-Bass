@@ -206,7 +206,7 @@ h1 {
 
 .date-line {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 11px;
   align-items: center;
   justify-content: center;
   gap: 13px;
