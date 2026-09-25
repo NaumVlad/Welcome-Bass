@@ -51,7 +51,7 @@ body {
 .invitation::after {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   inset: 18px;
   border: 1px solid rgba(178, 127, 39, 0.52);
   pointer-events: none;
@@ -59,7 +59,7 @@ body {
 
 .botanical-frame {
   position: absolute;
-  z-index: -2;
+  z-index: -1;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -291,10 +291,14 @@ h1 em {
   }
 
   .invitation::after {
-    inset: 14px;
-    border-color: rgba(178, 127, 39, 0.9);
-    outline: 1px solid rgba(178, 127, 39, 0.78);
-    outline-offset: -5px;
+    inset: 0;
+    border: 0;
+    outline: 0;
+    background:
+      linear-gradient(90deg, #9e650e, #d39315 52%, #aa7214) left 3.22% top / 2px 100% no-repeat,
+      linear-gradient(90deg, #c38e2c, #ad6e07 52%, #d0951d) left 4.1% top / 2px 100% no-repeat,
+      linear-gradient(270deg, #9e650e, #d39315 52%, #aa7214) right 3.22% top / 2px 100% no-repeat,
+      linear-gradient(270deg, #c38e2c, #ad6e07 52%, #d0951d) right 4.1% top / 2px 100% no-repeat;
   }
 
   .botanical-frame {
